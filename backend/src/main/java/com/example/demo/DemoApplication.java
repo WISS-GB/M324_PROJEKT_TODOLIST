@@ -57,10 +57,15 @@ public class DemoApplication {
 
 	@CrossOrigin
 	@GetMapping("/hello/{param}")
-	public String showMessage(@PathVariable (value = "param") String param) {
+	public String helloMessage(@PathVariable (value = "param") String param) {
 		return "Hello " + param;
 	}
 
+	@CrossOrigin
+	@GetMapping("/bye/{param}")
+	public String byeMessage(@PathVariable (value = "param") String param) {
+		return "Bye " + param;
+	}
 
 	@CrossOrigin
 	@PostMapping("/tasks")
