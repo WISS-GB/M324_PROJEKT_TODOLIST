@@ -61,6 +61,11 @@ public class DemoApplication {
 		return "Hello " + param;
 	}
 
+	@CrossOrigin
+	@GetMapping("/{param1}/{param2}")
+	public int calcTwoNumbers(@PathVariable (value = "param1") int param1, @PathVariable (value = "param2") int param2) {
+		return param1 * param2;
+	}
 
 	@CrossOrigin
 	@PostMapping("/tasks")
