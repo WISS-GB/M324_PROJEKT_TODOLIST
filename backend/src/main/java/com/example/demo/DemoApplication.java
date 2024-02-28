@@ -62,9 +62,9 @@ public class DemoApplication {
 	}
 
 	@CrossOrigin
-	@GetMapping("/bye/{param}")
-	public String byeMessage(@PathVariable (value = "param") String param) {
-		return "Bye " + param;
+	@GetMapping("/{param1}/{param2}")
+	public int calcTwoNumbers(@PathVariable (value = "param1") int param1, @PathVariable (value = "param2") int param2) {
+		return param1 * param2;
 	}
 
 	@CrossOrigin
