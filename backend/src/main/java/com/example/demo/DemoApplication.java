@@ -58,7 +58,7 @@ public class DemoApplication {
 	@CrossOrigin
 	@GetMapping("/hello/{param}")
 	public String showMessage(@PathVariable (value = "param") String param) {
-		return "Hello" + param;
+		return "Hello " + param;
 	}
 
 
