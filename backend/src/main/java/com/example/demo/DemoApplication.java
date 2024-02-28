@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +54,13 @@ public class DemoApplication {
 		}
 		return tasks; // actual task list (internally converted to a JSON stream)
 	}
+
+	@CrossOrigin
+	@GetMapping("/hello/{param}")
+	public String showMessage(@PathVariable (value = "param") String param) {
+		return "Hello" + param;
+	}
+
 
 	@CrossOrigin
 	@PostMapping("/tasks")
