@@ -2,7 +2,7 @@
 
 ## Branch erstellen testen
 
-Übung um das erstellen von branches zu üben
+Übung um das erstellen von branches zu lernen
 
 
 ## TLDR 
