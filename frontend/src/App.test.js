@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+
+test('renders ToDo Liste title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/ToDo Liste/i);
   expect(linkElement).toBeInTheDocument();
+  expect(linkElement).toBeVisible();
+  expect(linkElement).toHaveClass("headline")
 });
+
