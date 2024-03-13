@@ -159,7 +159,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>
+          <h1 calssName="headline">
             ToDo Liste
           </h1>
           <form onSubmit={this.handleSubmit}>
