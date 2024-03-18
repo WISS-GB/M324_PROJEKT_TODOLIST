@@ -1,33 +1,29 @@
-package com.example.demo.model;
+package com.example.models;
 
-import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /** the simplest task 
  * 
  * @author luh
  */
-
 @Entity
 public class Task {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
+	private String taskdescription; // must have the EXACT name as his React state property and may not be ignored!
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	
-	@NonNull
-	private String taskdescription; // must have the EXACT name as his React state property and may not be ignored!
+
+	public int getId() {
+		return id;
+	}
 
 	public Task() {
     }
