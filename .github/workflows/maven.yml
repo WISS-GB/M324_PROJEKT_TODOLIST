@@ -31,11 +31,16 @@ jobs:
     - name: Test
       run: mvn -f backend/ --batch-mode -Dmaven.test.failure.ignore=true test
 
-    - name: Build with Maven
-      run: mvn -B package --file backend/pom.xml
-
+    - name: Build With Maven
+      run: mvn -B package --file backend/pom.xml && mkdir staging && cp backend/target/*.jar staging
+      
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Package
+        path: staging
+        
     - name: Report
-      uses: dorny/test-reporter@v1
+    - uses: dorny/test-reporter@v1
       if: always()
       with:
         name: Maven Tests
