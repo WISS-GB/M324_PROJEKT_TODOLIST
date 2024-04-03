@@ -7,9 +7,14 @@
   pointer-events: none;
 }
 
+<<<<<<< HEAD
 .tasks {
   list-style: none;
   text-align: left;
+=======
+.Task{
+color: aqua;
+>>>>>>> e5af40f80445c96b60237e2896025cd62c84df06
 }
 
 @media (prefers-reduced-motion: no-preference) {

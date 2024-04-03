@@ -1,6 +1,14 @@
 # Kurzanleitung für die Installation der Entwicklungsumgebung zum Basisprojekt im Modul 324
 
+<<<<<<< HEAD
 ## Branch Creation testing
+=======
+## Branch erstellen testen
+
+Übung um das erstellen von branches zu lernen
+Übung 2
+
+>>>>>>> e5af40f80445c96b60237e2896025cd62c84df06
 
 ## TLDR 
 
