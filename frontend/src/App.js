@@ -140,11 +140,7 @@ class App extends React.Component {
    */
   renderTasks(todos) {
     return (
-<<<<<<< HEAD
       <ul class="tasks">
-=======
-      <ul className='Task'>
->>>>>>> e5af40f80445c96b60237e2896025cd62c84df06
         {todos.map((todo, index) => (
           <li key={todo.taskdescription}>
             {"Task " + (index+1) + ": "+ todo.taskdescription}

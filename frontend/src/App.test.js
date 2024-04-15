@@ -12,11 +12,8 @@ test('renders ToDo Liste title', () => {
   expect(linkElement).toHaveClass("headline")
 });
 
-<<<<<<< HEAD
-=======
 test('renders submit button', () => {
   render(<App />);
   const submitButton = screen.getByRole('button', { name: /absenden/i });
   expect(submitButton).toBeInTheDocument();
 });
->>>>>>> e5af40f80445c96b60237e2896025cd62c84df06
