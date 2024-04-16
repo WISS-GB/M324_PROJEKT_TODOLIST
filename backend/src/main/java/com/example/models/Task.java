@@ -1,8 +1,9 @@
 package com.example.models;
 
-import jakarta.persistence.GenerationType;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /** the simplest task 
@@ -11,19 +12,15 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Task {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String taskdescription; // must have the EXACT name as his React state property and may not be ignored!
+	private Integer id;
 	
-	public void setId(int id) {
-		this.id = id;
-	}
+	@Nonnull
+	private String taskdescription; // must have the EXACT name as his React state property and may not be ignored!
 
-	public int getId() {
-		return id;
-	}
+
 
 	public Task() {
     }
@@ -34,6 +31,14 @@ public class Task {
 
 	public void setTaskdescription(String taskdescription) { // do not apply camel-case here! Its a Bean!
 		this.taskdescription = taskdescription;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

@@ -1,6 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
+import './App.css';
+import logo from './logo.svg';
+
+const HOST_URL = "http://localhost:8080"
+
 /**
  * ==================================
  * Gemeinsames Basisprojekt: ToDo-App
@@ -75,18 +78,19 @@ class App extends React.Component {
   */
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Sending task description to Spring-Server: "+this.state.taskdescription);
-    fetch("http://localhost:8080/tasks/add", {  // API endpoint (the complete URL!) to save a taskdescription
+    console.log("Sending task description to Spring-Server: "+this.state.taskdescription+" - 1");
+    fetch(HOST_URL+"/todo/tasks", {  // API endpoint (the complete URL!) to save a taskdescription
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ taskdescription: this.state.taskdescription }) // both 'taskdescription' are identical to Task-Class attribute in Spring
+      body: this.state.taskdescription
+      //body: JSON.stringify({ taskdescription: this.state.taskdescription }) // both 'taskdescription' are identical to Task-Class attribute in Spring
     })
     .then(response => {
-      console.log("Receiving answer after sending to Spring-Server: ");
+      console.log("Receiving answer after sending to Spring-Server: - 1 -");
       console.log(response);
-      // window.location.href = "/"; // refresh window -> forces call of componentDidMount() to display the actual new list (with "flashing"!)
+       window.location.href = "/"; // refresh window -> forces call of componentDidMount() to display the actual new list (with "flashing"!)
       // Alternative solution to the upper line without refresh "flashing":
       // add the new Task to list (temporary solution to show it immediately):
       //const newTodos = this.state.todos.slice(); // creates a copy of the current todos state, which returns a shallow copy of the array.
@@ -103,10 +107,10 @@ class App extends React.Component {
   ** It updates the component's state with the fetched todos from the API Endpoint '/'.
   */
   componentDidMount() {
-    fetch("http://localhost:8080/tasks/")    // API endpoint (the complete URL!) to get a taskdescription-list
+    fetch(HOST_URL+"/todo/")    // API endpoint (the complete URL!) to get a taskdescription-list
       .then(response => response.json())
       .then(data => {
-        console.log("Receiving task list data from Spring-Server: ");
+        console.log("Receiving task list data from Spring-Server: -2-");
         console.log(data);
         this.setState({todos: data});  // set the whole list at once
       })
@@ -116,22 +120,30 @@ class App extends React.Component {
  /** Is called when the Done-Butten is pressed. It sends a POST request to the API endpoint '/delete' and updates the component's state with the new todo.
   ** In this case if the task with the unique taskdecription is found on the server, it will be removed from the list.
   */
-  handleClick = taskdescription => {
-    console.log("Sending task description to delete on Spring-Server: "+taskdescription);
-    fetch('http://localhost:8080/tasks/delete', { // API endpoint (the complete URL!) to delete an existing taskdescription in the list
+  handleClick = id => {
+    console.log("Sending task id to delete on Spring-Server: " + id + " -3-");
+    fetch(HOST_URL + `/todo/delete`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/text"
       },
-      body: JSON.stringify({ taskdescription: taskdescription })
+      body: id
+      //body: JSON.stringify({ id: id })
+      //body: JSON.stringify({ id: id })
     })
     .then(response => {
-      console.log("Receiving answer after deleting on Spring-Server: ");
-      console.log(response);
-      window.location.href = "/";
+      console.log("Receiving answer after deleting on Spring-Server: -3-");
+      if (!response.ok) {
+        throw new Error("Failed to delete task");
+      }
+      console.log("Task deleted successfully");
+      window.location.href="/"
     })
-    .catch(error => console.log(error))
-  }
+    .catch(error => {
+      console.error("Error deleting task:", error);
+    });
+}
+  
 
   /**
    * render all task lines
@@ -140,11 +152,11 @@ class App extends React.Component {
    */
   renderTasks(todos) {
     return (
-      <ul class="tasks">
+      <ul>
         {todos.map((todo, index) => (
-          <li key={todo.taskdescription}>
+          <li key={index+'-'+todo.taskdescription}>
             {"Task " + (index+1) + ": "+ todo.taskdescription}
-            <button onClick={this.handleClick.bind(this, todo.taskdescription)}>Done</button>
+            <button onClick={this.handleClick.bind(this, todo.id)}>Done</button>
           </li>
         ))}
       </ul>
@@ -159,10 +171,10 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 class="headline">
-            ToDo Liste
+          <h1 className='headline'>
+            learn react - ToDo Liste
           </h1>
-          <form onSubmit={this.handleSubmit}>
+          <form className='task-form' onSubmit={this.handleSubmit}>
             <input
               type="text"
               value={this.state.taskdescription}

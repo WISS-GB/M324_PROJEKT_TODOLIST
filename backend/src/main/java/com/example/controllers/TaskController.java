@@ -1,12 +1,12 @@
 package com.example.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,47 +16,44 @@ import com.example.models.Task;
 import com.example.repository.TaskRepository;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/todo")
 public class TaskController {
-    @Autowired
-	private TaskRepository taskrepo;
+	@Autowired
+	private TaskRepository taskRepository;
 
 	@CrossOrigin
 	@GetMapping("/")
 	public List<Task> getTasks() {
-		return taskrepo.findAll();
+
+		return taskRepository.findAll();
 	}
 
 	@CrossOrigin
-	@GetMapping("/hello/{param}")
-	public String helloMessage(@PathVariable (value = "param") String param) {
-		return "Hello " + param;
-	}
-
-	@CrossOrigin
-	@GetMapping("/{param1}/{param2}")
-	public int calcTwoNumbers(@PathVariable (value = "param1") int param1, @PathVariable (value = "param2") int param2) {
-		return param1 * param2;
-	}
-
-	@CrossOrigin
-	@PostMapping("/add")
-	public ResponseEntity<Task> addTask(@RequestBody String taskdescription) {
+	@PostMapping("/tasks")
+	public ResponseEntity<String> addTask(@RequestBody String taskdescription) {
+		
 		Task task = new Task();
 		task.setTaskdescription(taskdescription);
-		task = taskrepo.save(task);
-		return ResponseEntity.ok(task);
+		taskRepository.save(task);
+
+		return ResponseEntity.ok("Created task with id:"+task.getId()+", taskdescription:"+task.getTaskdescription()+"");
 	}
 
 	@CrossOrigin
-	@PostMapping("/delete")
-	public String delTask(@RequestBody String taskdescription) {
-		Task task = taskrepo.findByTaskdescription(taskdescription);
-		if (task != null) {
-			taskrepo.delete(task);
-			return "deleted: " + task.toString();
-		}
-		
-		return "deletion failed";
-	}
+    @PostMapping("/delete")
+    public ResponseEntity<String> delTask(@RequestBody String id) {
+		System.out.println(id);
+        try {
+            int taskId = Integer.parseInt(id);
+            Optional<Task> taskToDelete = taskRepository.findById(taskId);
+            if (taskToDelete.isPresent()) {
+                taskRepository.delete(taskToDelete.get());
+                return ResponseEntity.ok("Task '" + taskToDelete.get().getTaskdescription() + "' has been deleted");
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid task ID format");
+        }
+    }
 }
