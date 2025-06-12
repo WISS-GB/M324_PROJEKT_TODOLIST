@@ -1,39 +1,48 @@
 # User Stories für die ToDo-App
 
----
 name: Persistente Datenspeicherung
-about: Dauerhafte Speicherung von Aufgaben
-title: "[User Story] Persistente Datenspeicherung" 
-labels: user-story, enhancement, database
-assignees: ''
----
+description: Dauerhafte Speicherung von Aufgaben
+title: "[User Story] Persistente Datenspeicherung"
+labels: ["user-story", "enhancement", "database"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## User Story Details
 
-### 👨 Rolle
-*Als* Benutzer
+        ### 👨 Rolle
+        *Als* Benutzer
 
-### 🎯 Ziel / Wunsch
-*möchte ich*, dass meine Aufgaben zwischen Sitzungen erhalten bleiben
+        ### 🎯 Ziel / Wunsch
+        *möchte ich*, dass meine Aufgaben zwischen Sitzungen erhalten bleiben
 
-### 💡 Nutzen
-*damit* ich meine Daten nicht verliere, wenn der Server neu gestartet wird
-
----
-
-### ✅ Teilaufgaben
-- [ ] Datenbankanbindung implementieren
-- [ ] Entity-Klassen für persistente Speicherung anpassen
-- [ ] Repository-Schnittstellen erstellen
-- [ ] Service-Layer für Datenbankzugriff entwickeln
-- [ ] Error-Handling für Datenbankfehler einrichten
-
----
-
-### 🔍 Akzeptanzkriterien
-- Alle erstellten Aufgaben werden in einer MySQL-Datenbank gespeichert
-- Nach einem Neustart des Servers werden alle zuvor erstellten Aufgaben wieder angezeigt
-- Änderungen an Aufgaben (z.B. Markierung als erledigt) bleiben auch nach einem Neustart bestehen
-- Die Datenbank ist vor Datenverlust geschützt und wird regelmäßig gesichert
-- Bei Problemen mit der Datenbankverbindung erhält der Benutzer eine aussagekräftige Fehlermeldung
+        ### 💡 Nutzen
+        *damit* ich meine Daten nicht verliere, wenn der Server neu gestartet wird
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: Teilaufgaben
+      options:
+        - label: Datenbankanbindung implementieren
+          required: false
+        - label: Entity-Klassen für persistente Speicherung anpassen
+          required: false
+        - label: Repository-Schnittstellen erstellen
+          required: false
+        - label: Service-Layer für Datenbankzugriff entwickeln
+          required: false
+        - label: Error-Handling für Datenbankfehler einrichten
+          required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Akzeptanzkriterien
+        - Alle erstellten Aufgaben werden in einer MySQL-Datenbank gespeichert
+        - Nach einem Neustart des Servers werden alle zuvor erstellten Aufgaben wieder angezeigt
+        - Änderungen an Aufgaben (z.B. Markierung als erledigt) bleiben auch nach einem Neustart bestehen
+        - Die Datenbank ist vor Datenverlust geschützt und wird regelmäßig gesichert
+        - Bei Problemen mit der Datenbankverbindung erhält der Benutzer eine aussagekräftige Fehlermeldung
 
 ---
 name: Fristfunktion
