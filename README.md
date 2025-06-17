@@ -10,6 +10,7 @@ Kommentaren vor allem in App.js zu finden.
 1. diese Beschreibung
 2. frontend (Tools: npm und VSCode)
 	* App.js
+	Test funktioniert?
 
 3. backend (Eclipse oder VS-Code)
 	* DemoApplication.java
