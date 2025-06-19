@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import logo from './assets/react.svg'
+import logo from './assets/tie_fighter.png'
 import viteLogo from '/vite.svg'
 import './App.css'
 
