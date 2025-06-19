@@ -95,7 +95,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>
-          ToDo Liste
+          Checkliste
         </h1>
         <form onSubmit={handleSubmit} className='todo-form'>
           <label htmlFor="taskdescription">Neues Todo anlegen:</label>
