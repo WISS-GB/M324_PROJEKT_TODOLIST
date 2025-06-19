@@ -16,6 +16,7 @@ Kommentaren vor allem in App.js zu finden.
 	* Task.java
 	* pom.xml (JAR configuration, mit div. Plugins s.u.)
 
+Mein Kommentar
 ## Inbetriebnahme
 
 1. forken oder clonen
