@@ -17,6 +17,7 @@ Kommentaren vor allem in App.js zu finden.
 	* pom.xml (JAR configuration, mit div. Plugins s.u.)
 
 Mein Kommentar
+Mein 2. Kommentar
 ## Inbetriebnahme
 
 1. forken oder clonen
