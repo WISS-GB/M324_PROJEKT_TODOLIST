@@ -5,7 +5,7 @@ FROM tomcat:10.1-jdk17
 WORKDIR /usr/local/tomcat/webapps/
 
 # Copy the application's WAR file to the Tomcat webapps directory
-COPY target/*.war ROOT.war
+COPY target/java-build/*.war ROOT.war
 
 # Expose the port the application runs on
 EXPOSE 8080

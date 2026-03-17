@@ -5,7 +5,7 @@ FROM nginx:latest
 WORKDIR /usr/share/nginx/html
 
 # Copy the contents of the public directory to the Nginx HTML directory
-COPY dist/ .
+COPY dist/react-build/ .
 
 # Expose port 80 to allow access to the web server
 EXPOSE 80

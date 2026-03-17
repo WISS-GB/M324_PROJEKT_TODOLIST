@@ -61,7 +61,6 @@ jobs:
       - name: Build & Push
         run: |
           cd backend
-          ls target
           docker build -t ghcr.io/${{ github.repository }}/backend:latest .
           docker push ghcr.io/${{ github.repository }}/backend:latest
 
