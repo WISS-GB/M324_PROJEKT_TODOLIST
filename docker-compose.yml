@@ -1,14 +1,12 @@
-version: '3.8'
-
 services:
   frontend:
-    image: todo/todo-app/frontend:latest
+    image: ghcr.io/trombone98/m324-todo-app/frontend:latest
     ports:
       - "80:80"
     depends_on:
       - backend
 
   backend:
-    image: todo/todo-app/backend:latest
+    image: ghcr.io/trombone98/m324-todo-app/backend:latest
     ports:
       - "8080:8080"
