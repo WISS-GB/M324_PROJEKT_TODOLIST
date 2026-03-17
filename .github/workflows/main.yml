@@ -55,8 +55,8 @@ jobs:
       - name: Build & Push
         run: |
           cd backend
-          docker build -t ghcr.io/${{ github.repository | lower }}/backend:latest .
-          docker push ghcr.io/${{ github.repository | lower }}/backend:latest
+          docker build -t ghcr.io/m324/backend:latest .
+          docker push ghcr.io/m324/backend:latest
 
   containerize-frontend:
     runs-on: ubuntu-latest
@@ -68,5 +68,5 @@ jobs:
       - name: Build & Push
         run: |
           cd frontend
-          docker build -t ghcr.io/${{ github.repository | lower }}/frontend:latest .
-          docker push ghcr.io/${{ github.repository | lower }}/frontend:latest
+          docker build -t ghcr.io/m324/frontend:latest .
+          docker push ghcr.io/m324/frontend:latest
