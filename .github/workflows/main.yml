@@ -4,45 +4,45 @@ on:
   push:
     branches:
       - '**'   # Alle Branches
+  jobs:
+    build-java-api:
+      runs-on: ubuntu-latest
+      needs: test-java-api
+      steps:
+        - uses: actions/checkout@v4
+        - name: Set up JDK 17
+          uses: actions/setup-java@v4
+          with:
+            distribution: temurin
+            java-version: 17
+        - name: Build
+          run: |
+            cd backend
+            mvn clean install
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: java-build
+            path: |
+              backend/target/*.jar
+              backend/target/*.war
 
-  build-java-api:
-    runs-on: ubuntu-latest
-    needs: test-java-api
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-      - name: Build
-        run: |
-          cd backend
-          mvn clean install
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: java-build
-          path: |
-            backend/target/*.jar
-            backend/target/*.war
-
-  build-react-app:
-    runs-on: ubuntu-latest
-    needs: test-react-app
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Build
-        run: |
-          cd frontend
-          npm install
-          CI=false npm run build
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: frontend/build
+    build-react-app:
+      runs-on: ubuntu-latest
+      needs: test-react-app
+      steps:
+        - uses: actions/checkout@v4
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18
+        - name: Build
+          run: |
+            cd frontend
+            npm install
+            CI=false npm run build
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: react-build
+            path: frontend/build
