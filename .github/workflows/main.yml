@@ -24,7 +24,8 @@ jobs:
         with:
           name: java-build
           path: |
-            backend/target/*
+            backend/target/*.jar
+            backend/target/*.war
 
   build-react-app:
     runs-on: ubuntu-latest
@@ -56,7 +57,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-build
-          path: backend/target
+          path: backend/target/*
       - name: Build & Push
         run: |
           cd backend
