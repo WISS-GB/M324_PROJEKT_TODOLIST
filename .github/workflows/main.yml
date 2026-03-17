@@ -3,7 +3,8 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - '**'   # Alle Branches
+      - '**'
+
 jobs:
   build-java-api:
     runs-on: ubuntu-latest
@@ -52,6 +53,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: java-build
+          path: backend/target
       - name: Build & Push
         run: |
           cd backend
@@ -65,6 +71,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Download react artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
+          path: frontend/dist
       - name: Build & Push
         run: |
           cd frontend
