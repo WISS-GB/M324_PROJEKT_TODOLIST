@@ -24,8 +24,7 @@ jobs:
         with:
           name: java-build
           path: |
-            backend/target/*.jar
-            backend/target/*.war
+            backend/target/*
 
   build-react-app:
     runs-on: ubuntu-latest
