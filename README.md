@@ -2,6 +2,7 @@
 
 ## TLDR
 
+Das Modul gilt als Teamarbeit: Natalia und Anina
 ToDo-Liste mit React (frontend) und Spring (backend). Weitere Details sind in den
 Kommentaren vor allem in App.js zu finden.
 
