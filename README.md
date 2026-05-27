@@ -1,7 +1,7 @@
 # Kurzanleitung für die Installation der Entwicklungsumgebung zum Basisprojekt im Modul 324
 
 ## TLDR
-
+Dieses Modul besteht aus einer Teamarbeit: Natalia und Anina
 ToDo-Liste mit React (frontend) und Spring (backend). Weitere Details sind in den
 Kommentaren vor allem in App.js zu finden.
 
